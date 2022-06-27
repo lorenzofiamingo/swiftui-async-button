@@ -1,6 +1,6 @@
 # SwiftUI AsyncButton 🖲️
 
-`AsyncButton` is a `Button`capable of running concurrent code. 
+`AsyncButton` is a `Button` capable of running concurrent code. 
 
 
 ## Usage
