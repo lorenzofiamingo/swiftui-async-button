@@ -11,7 +11,7 @@ Button("Run") { run() }
 ```
 to this:
 ```swift
-Button("Run") { try await run() }
+AsyncButton("Run") { try await run() }
 ```
 
 In addition to `Button` initializers, you have the possibilities to specify special behaviours via `AsyncButtonOptions`:
