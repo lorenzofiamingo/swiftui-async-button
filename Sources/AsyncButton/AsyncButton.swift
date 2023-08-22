@@ -10,9 +10,11 @@ public struct AsyncButton<Label> : View where Label : View {
     @State private var operations: [AsyncButtonOperation] = []
     @State private var showingErrorAlert = false
     @State private var localizedError: AnyLocalizedError?
-    
-    private let generator = UINotificationFeedbackGenerator()
-    
+
+    #if os(iOS)
+        private let generator = UINotificationFeedbackGenerator()
+    #endif
+
     @State private var tint: Color?
     
     var operationIsLoading: Bool {
@@ -46,7 +48,9 @@ public struct AsyncButton<Label> : View where Label : View {
                 operations.append(.loading(actionTask))
                 Task {
                     if options.contains(.enableNotificationFeedback) {
-                        generator.prepare()
+                        #if os(iOS)
+                            generator.prepare()
+                        #endif
                     }
                     let result = await actionTask.result
                     let index = operations.lastIndex { operation in
@@ -57,14 +61,16 @@ public struct AsyncButton<Label> : View where Label : View {
                         }
                     }
                     operations[index!] = .completed(actionTask, result)
-                    if options.contains(.enableNotificationFeedback) {
-                        switch result {
-                        case .success:
-                            generator.notificationOccurred(.success)
-                        case .failure:
-                            generator.notificationOccurred(.error)
+                    #if os(iOS)
+                        if options.contains(.enableNotificationFeedback) {
+                            switch result {
+                            case .success:
+                                generator.notificationOccurred(.success)
+                            case .failure:
+                                generator.notificationOccurred(.error)
+                            }
                         }
-                    }
+                    #endif
                     if options.contains(.enableTintFeedback) {
                         withAnimation(.linear(duration: 0.1)) {
                             switch result {
