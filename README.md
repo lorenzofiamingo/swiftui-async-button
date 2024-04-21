@@ -60,7 +60,7 @@ AsyncButton {
 
 ## Other projects
 
-[SwiftUI VariadicViews 🥞]([https://github.com/lorenzofiamingo/swiftui-async-button](https://github.com/lorenzofiamingo/swiftui-variadic-views)
+[SwiftUI VariadicViews 🥞](https://github.com/lorenzofiamingo/swiftui-variadic-views)
 
 [SwiftUI CachedAsyncImage 🗃️](https://github.com/lorenzofiamingo/swiftui-cached-async-image)
 
