@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AsyncButtonOptions: OptionSet {
+public struct AsyncButtonOptions: OptionSet, Sendable {
     
     public let rawValue: Int
     
